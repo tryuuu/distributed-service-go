@@ -19,18 +19,22 @@ func newHTTPServer() *httpServer {
 	}
 }
 
+// curl -X POST localhost:8080 -d `{"record": {"value": "test"}}`というrequestを受け取る
 type ProduceRequest struct {
 	Record Record `json:"record"`
 }
 
+// curl -X POST localhost:8080 -d `{"record": {"value": "test"}}`というrequestに対するresponse
 type ProduceResponse struct {
 	Offset uint64 `json:"offset"`
 }
 
+// curl -X GET localhost:8080 -d '{"offset": 2}'というrequestを受け取る
 type ConsumeRequest struct {
 	Offset uint64 `json:"offset"`
 }
 
+// curl -X GET localhost:8080 -d '{"offset": 2}'というrequestに対するresponse
 type ConsumeResponse struct {
 	Record Record `json:"record"`
 }
